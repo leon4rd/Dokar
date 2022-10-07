@@ -60,20 +60,9 @@ RUN apt update && apt upgrade -y && \
 # Pypi package Repo upgrade
 RUN pip3 install --upgrade pip setuptools
 
-# Copy Python Requirements to /root/nana
-RUN git clone https://github.com/legenhand/Nana-Bot.git -b herokutest /root/nana
 WORKDIR /root/nana
-
-#Copy config file to /root/nana/nana
-COPY ./nana/config.example.py ./nana/config.py* /root/nana/nana/
-
-#Copy credentials google drive to /root/nana
-COPY ./README.md ./client_secrets.json* /root/nana/
-
 ENV PATH="/home/userbot/bin:$PATH"
+RUN wget https://raw.githubusercontent.com/legenhand/Nana-Bot/master/requirements.txt
 
 # Install requirements
 RUN sudo pip3 install -U -r requirements.txt
-
-# Starting Worker
-CMD ["python3","-m","nana"]
