@@ -13,7 +13,8 @@ RUN apt update && apt upgrade -y && \
     debian-keyring \
     debian-archive-keyring \
     git \
-    rsync
+    rsync \
+    curl
 
 ARG hostuid=1000
 ARG hostgid=1000
