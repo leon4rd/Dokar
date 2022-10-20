@@ -8,11 +8,11 @@ ENV \
     CCACHE_COMPRESS=1 \
     PATH=$PATH:/usr/local/bin/
 
-RUN \
-    export DEBIAN_FRONTEND=noninteractive \
-    && apt-get update -y \
-    && apt-get upgrade -y \
-    && apt-get install -y \
+RUN apt update && apt upgrade -y && \
+    apt install --no-install-recommends -y \
+    debian-keyring \
+    debian-archive-keyring \
+    bash \
     bc \
     bison \
     build-essential \
