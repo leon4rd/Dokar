@@ -12,7 +12,8 @@ RUN apt update && apt upgrade -y && \
     apt install --no-install-recommends -y \
     debian-keyring \
     debian-archive-keyring \
-    git
+    git \
+    rsync
 
 ARG hostuid=1000
 ARG hostgid=1000
