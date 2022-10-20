@@ -1,7 +1,6 @@
 FROM ubuntu:latest
 MAINTAINER leon4rd <leon4rd@github.com>
 
-
 ENV \
     CCACHE_SIZE=20G \
     CCACHE_DIR=/srv/ccache \
@@ -74,9 +73,6 @@ RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin
  && chmod a+x /usr/local/bin/repo
 
 RUN echo "build ALL=NOPASSWD: ALL" > /etc/sudoers.d/build
-
-ADD startup.sh /home/build/startup.sh
-RUN chmod a+x /home/build/startup.sh
 
 RUN chown -R build:build /home/build
 
