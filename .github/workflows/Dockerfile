@@ -12,50 +12,7 @@ RUN apt update && apt upgrade -y && \
     apt install --no-install-recommends -y \
     debian-keyring \
     debian-archive-keyring \
-    bash \
-    bc \
-    bison \
-    build-essential \
-    ccache \
-    curl \
-    flex \
-    g++-multilib \
-    gcc-multilib \
-    git \
-    gnupg \
-    gperf \
-    imagemagick \
-    lib32ncurses5-dev \
-    lib32readline-dev \
-    lib32z1-dev \
-    liblz4-tool \
-    libncurses5-dev \
-    libsdl1.2-dev \
-    libssl-dev \
-    libwxgtk3.0-dev \
-    libxml2 \
-    libxml2-utils \
-    lzop \
-    pngcrush \
-    rsync \
-    schedtool \
-    squashfs-tools \
-    xsltproc \
-    zip \
-    zlib1g-dev \
-    openjdk-8-jdk \
-    android-tools-adb \
-    android-tools-fastboot \
-    bash-completion \
-    bsdmainutils \
-    file \
-    nano \
-    screen \
-    sudo \
-    tig \
-    vim \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+    git
 
 ARG hostuid=1000
 ARG hostgid=1000
@@ -81,3 +38,7 @@ VOLUME /srv/ccache
 
 USER build
 WORKDIR /home/build/android
+
+RUN git clone https://github.com/akhilnarang/scripts && cd scripts && bash setup/android_build_env.sh
+
+RUN rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp scripts
