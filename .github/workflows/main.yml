@@ -2,7 +2,7 @@ name: Docker Build
 on:
   push:
     branches:
-      - main
+      - kernel
 
 jobs:
   build:
@@ -21,11 +21,11 @@ jobs:
         file: ./.github/workflows/Dockerfile
         platforms: linux/amd64
         push: true
-        tags: ${{ secrets.DH_UNAME }}/nana:latest
+        tags: ${{ secrets.DH_UNAME }}/aosp:kernel
         
     - name: send telegram message
       run: |
           function sendTG() {
           curl -s "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendmessage" --data "text=${*}&chat_id=${{ secrets.TG_CHAT }}&parse_mode=Markdown"
           }
-          sendTG "\`I have pushed new images to docker\` %0A [Image are here](https://hub.docker.com/r/${{ secrets.DH_UNAME }}/nana/tags)" &> /dev/null
+          sendTG "\`I have pushed new images to docker\` %0A [Image are here](https://hub.docker.com/r/${{ secrets.DH_UNAME }}/aosp/tags)" &> /dev/null
